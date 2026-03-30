@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Khorja - Nouaman & Chaimae</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        :root {
+            --taupe: #8B7E74;
+            --taupe-light: #A89B8C;
+            --beige: #D4C5B5;
+            --beige-light: #E8DED4;
+            --cream: #F5F0EB;
+            --white: #FFFFFF;
+            --charcoal: #3D3632;
+            --text-medium: #6B5F56;
+            --text-light: #9B8E84;
+        }
+
+        html, body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--beige) 0%, var(--beige-light) 50%, var(--cream) 100%);
+            min-height: 100vh;
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* ENVELOPE SCENE */
+        .envelope-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--taupe) 0%, var(--taupe-light) 50%, var(--beige) 100%);
+            z-index: 1000;
+            transition: opacity 1.5s ease, visibility 1.5s ease;
+            padding: 10px;
+        }
+
+        .envelope-scene.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .envelope-touch-area {
+            width: 100%;
+            max-width: 340px;
+            aspect-ratio: 5/3.5;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        @media (min-width: 400px) {
+            .envelope-touch-area {
+                max-width: 380px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .envelope-touch-area {
+                max-width: 500px;
+            }
+        }
+
+        .envelope-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .envelope-wrapper.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* ENVELOPE FRONT */
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: linear-gradient(145deg, var(--cream) 0%, var(--white) 50%, var(--beige-light) 100%);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+            border: 2px solid var(--beige);
+            -webkit-backface-visibility: hidden;
+        }
+
+        .envelope-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='none' stroke='%238B7E74' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .front-border {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--beige);
+            border-radius: 8px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .front-corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--taupe);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .front-corner-tl { top: 18px; left: 18px; border-right: none; border-bottom: none; }
+        .front-corner-tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
+        .front-corner-bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
+        .front-corner-br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
+
+        .front-content {
+            text-align: center;
+            z-index: 5;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .front-label {
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 400px) {
+            .front-label {
+                font-size: 10px;
+                margin-bottom: 12px;
+            }
+        }
+
+        .front-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            background: linear-gradient(135deg, var(--taupe) 0%, var(--charcoal) 50%, var(--taupe-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+            line-height: 1.1;
+        }
+
+        @media (min-width: 400px) {
+            .front-title {
+                font-size: 42px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .front-title {
+                font-size: 52px;
+            }
+        }
+
+        .front-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        @media (min-width: 400px) {
+            .front-sub {
+                font-size: 11px;
+                margin-top: 12px;
+            }
+        }
+
+        .front-seal {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle at 35% 35%, var(--beige-light), var(--beige), var(--taupe-light));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--taupe);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @media (min-width: 400px) {
+            .front-seal {
+                width: 50px;
+                height: 50px;
+                bottom: 30px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .front-seal {
+                width: 60px;
+                height: 60px;
+                bottom: 40px;
+            }
+        }
+
+        .front-seal::before {
+            content: '';
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+        }
+
+        @media (min-width: 400px) {
+            .front-seal::before {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .front-seal::before {
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        .front-seal-text {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--charcoal);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 400px) {
+            .front-seal-text {
+                font-size: 18px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .front-seal-text {
+                font-size: 24px;
+            }
+        }
+
+        .click-hint-front {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--white);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 90%;
+        }
+
+        @media (min-width: 400px) {
+            .click-hint-front {
+                font-size: 13px;
+                padding: 15px 30px;
+                margin-top: 35px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .click-hint-front {
+                font-size: 14px;
+                letter-spacing: 3px;
+                margin-top: 40px;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* ENVELOPE BACK */
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: rotateY(180deg);
+            background: linear-gradient(145deg, var(--cream) 0%, var(--white) 50%, var(--beige-light) 100%);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 2px solid var(--beige);
+        }
+
+        .back-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: linear-gradient(145deg, var(--cream) 0%, var(--white) 50%, var(--beige-light) 100%);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            z-index: 10;
+            border-bottom: 2px solid var(--beige);
+        }
+
+        .envelope-wrapper.open .back-flap {
+            transform: rotateX(180deg);
+        }
+
+        .card-peek {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -30%);
+            width: 90%;
+            height: 85%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.6s ease 0.8s;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        .envelope-wrapper.open .card-peek {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+
+        .peek-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            color: var(--taupe);
+        }
+
+        @media (min-width: 400px) {
+            .peek-text {
+                font-size: 28px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .peek-text {
+                font-size: 32px;
+            }
+        }
+
+        /* MAIN INVITATION */
+        .invitation-wrapper {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+            background: linear-gradient(135deg, var(--beige) 0%, var(--beige-light) 50%, var(--cream) 100%);
+        }
+
+        .invitation-wrapper.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .invitation-card {
+            width: 100%;
+            max-width: 700px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1), 0 15px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+            position: relative;
+            border: 2px solid var(--beige);
+        }
+
+        .elegant-border {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid var(--beige);
+            border-radius: 12px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        @media (min-width: 600px) {
+            .elegant-border {
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        .card-content {
+            padding: 35px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 600px) {
+            .card-content {
+                padding: 50px 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card-content {
+                padding: 70px 60px;
+            }
+        }
+
+        .names-header {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            background: linear-gradient(135deg, var(--taupe) 0%, var(--charcoal) 50%, var(--taupe-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 400px) {
+            .names-header {
+                font-size: 42px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .names-header {
+                font-size: 48px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .names-header {
+                font-size: 56px;
+            }
+        }
+
+        .names-sub {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        @media (min-width: 400px) {
+            .names-sub {
+                font-size: 12px;
+                letter-spacing: 4px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .names-sub {
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .divider {
+            width: 100px;
+            height: 20px;
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 400px) {
+            .divider {
+                width: 120px;
+                margin: 25px auto;
+            }
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--beige), transparent);
+        }
+
+        .divider-icon {
+            font-size: 14px;
+            color: var(--taupe);
+            background: var(--cream);
+            padding: 0 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 400px) {
+            .divider-icon {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+        }
+
+        .event-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            background: linear-gradient(135deg, var(--taupe) 0%, var(--charcoal) 50%, var(--taupe-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        @media (min-width: 400px) {
+            .event-title {
+                font-size: 56px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .event-title {
+                font-size: 64px;
+                margin: 20px 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .event-title {
+                font-size: 80px;
+            }
+        }
+
+        .event-subtitle {
+            font-size: 11px;
+            color: var(--text-medium);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 400px) {
+            .event-subtitle {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .event-subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .event-description {
+            font-size: 14px;
+            color: var(--text-medium);
+            line-height: 1.7;
+            max-width: 500px;
+            margin: 0 auto 25px;
+            font-style: italic;
+            padding: 0 10px;
+        }
+
+        @media (min-width: 400px) {
+            .event-description {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .event-description {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .details-section {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .details-section {
+                margin-top: 40px;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        .detail-item {
+            padding: 25px 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--taupe);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 400px) {
+            .detail-item {
+                padding: 28px 18px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .detail-item {
+                padding: 30px 20px;
+            }
+        }
+
+        .detail-item:nth-child(2) {
+            border-top-color: var(--beige);
+        }
+
+        .detail-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+
+        .detail-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 400px) {
+            .detail-icon {
+                font-size: 26px;
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .detail-icon {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .detail-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 400px) {
+            .detail-label {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .detail-value {
+            font-size: 18px;
+            color: var(--charcoal);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 400px) {
+            .detail-value {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .detail-value {
+                font-size: 22px;
+            }
+        }
+
+        .detail-sub {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        @media (min-width: 400px) {
+            .detail-sub {
+                font-size: 13px;
+                margin-top: 10px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .detail-sub {
+                font-size: 14px;
+            }
+        }
+
+        .location-section {
+            margin-top: 20px;
+            padding: 28px 20px;
+            background: linear-gradient(135deg, var(--taupe) 0%, var(--taupe-light) 100%);
+            border-radius: 12px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--beige);
+        }
+
+        @media (min-width: 400px) {
+            .location-section {
+                padding: 30px 22px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .location-section {
+                margin-top: 30px;
+                padding: 35px 25px;
+            }
+        }
+
+        .location-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .location-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--beige), var(--cream), var(--beige));
+        }
+
+        .location-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 400px) {
+            .location-icon {
+                font-size: 30px;
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .location-icon {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .location-section .detail-label {
+            color: var(--beige-light);
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-section .detail-value {
+            color: white;
+            font-size: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 400px) {
+            .location-section .detail-value {
+                font-size: 22px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .location-section .detail-value {
+                font-size: 24px;
+            }
+        }
+
+        .location-section .detail-sub {
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 1;
+            font-size: 14px;
+        }
+
+        @media (min-width: 400px) {
+            .location-section .detail-sub {
+                font-size: 15px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .location-section .detail-sub {
+                font-size: 16px;
+            }
+        }
+
+        .program-section {
+            margin-top: 30px;
+            padding: 28px 20px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--beige-light) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--beige);
+            position: relative;
+        }
+
+        @media (min-width: 400px) {
+            .program-section {
+                padding: 30px 22px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .program-section {
+                margin-top: 40px;
+                padding: 35px 25px;
+            }
+        }
+
+        .program-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: var(--taupe);
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 400px) {
+            .program-title {
+                font-size: 32px;
+                margin-bottom: 22px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .program-title {
+                font-size: 36px;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .program-title {
+                font-size: 40px;
+            }
+        }
+
+        .program-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 400px) {
+            .program-list {
+                gap: 18px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .program-list {
+                gap: 20px;
+            }
+        }
+
+        .program-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 8px;
+            border-left: 3px solid var(--taupe);
+        }
+
+        @media (min-width: 400px) {
+            .program-item {
+                gap: 14px;
+                padding: 14px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .program-item {
+                gap: 15px;
+                padding: 15px;
+            }
+        }
+
+        .program-time {
+            font-weight: 600;
+            color: var(--taupe);
+            min-width: 50px;
+            font-size: 13px;
+        }
+
+        @media (min-width: 400px) {
+            .program-time {
+                min-width: 55px;
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .program-time {
+                min-width: 60px;
+                font-size: 15px;
+            }
+        }
+
+        .program-text {
+            color: var(--text-medium);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 400px) {
+            .program-text {
+                font-size: 14px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .program-text {
+                font-size: 15px;
+            }
+        }
+
+        .thank-you-section {
+            margin-top: 30px;
+            padding: 28px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid var(--beige-light);
+        }
+
+        @media (min-width: 400px) {
+            .thank-you-section {
+                padding: 30px 22px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .thank-you-section {
+                margin-top: 40px;
+                padding: 35px 25px;
+            }
+        }
+
+        .thank-you-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 26px;
+            color: var(--taupe);
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 400px) {
+            .thank-you-title {
+                font-size: 28px;
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .thank-you-title {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .thank-you-text {
+            font-size: 14px;
+            color: var(--text-medium);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        @media (min-width: 400px) {
+            .thank-you-text {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .thank-you-text {
+                font-size: 15px;
+            }
+        }
+
+        .contact-section {
+            margin-top: 30px;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, var(--taupe) 0%, var(--taupe-light) 100%);
+            border-radius: 12px;
+            color: white;
+            border: 2px solid var(--beige);
+        }
+
+        @media (min-width: 400px) {
+            .contact-section {
+                padding: 28px 22px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .contact-section {
+                margin-top: 40px;
+                padding: 30px 25px;
+            }
+        }
+
+        .contact-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--beige-light);
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 400px) {
+            .contact-title {
+                font-size: 12px;
+                margin-bottom: 14px;
+            }
+        }
+
+        .contact-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 400px) {
+            .contact-text {
+                font-size: 15px;
+            }
+        }
+
+        .contact-text a {
+            color: var(--cream);
+            text-decoration: none;
+            border-bottom: 1px solid var(--beige);
+            transition: all 0.3s ease;
+        }
+
+        .contact-text a:hover {
+            color: white;
+            border-bottom-color: white;
+        }
+
+        .card-footer {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--beige);
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        @media (min-width: 400px) {
+            .card-footer {
+                margin-top: 35px;
+                padding-top: 28px;
+                font-size: 13px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .card-footer {
+                margin-top: 40px;
+                padding-top: 30px;
+            }
+        }
+
+        .footer-names {
+            margin-top: 8px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--taupe), var(--charcoal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (min-width: 400px) {
+            .footer-names {
+                font-size: 26px;
+                margin-top: 10px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .footer-names {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope-scene" id="envelopeScene">
+        <div class="envelope-touch-area" id="envelopeTouchArea">
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope-front">
+                    <div class="front-border"></div>
+                    <div class="front-corner front-corner-tl"></div>
+                    <div class="front-corner front-corner-tr"></div>
+                    <div class="front-corner front-corner-bl"></div>
+                    <div class="front-corner front-corner-br"></div>
+
+                    <div class="front-content">
+                        <div class="front-label">Uitnodiging voor</div>
+                        <div class="front-title">Khorja</div>
+                        <div class="front-sub">13 Juni 2026</div>
+                    </div>
+
+                    <div class="front-seal">
+                        <span class="front-seal-text">N&C</span>
+                    </div>
+                </div>
+
+                <div class="envelope-back">
+                    <div class="back-flap"></div>
+                    <div class="card-peek">
+                        <span class="peek-text">Openen...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="click-hint-front" id="clickHint">Klik om te openen</div>
+    </div>
+
+    <div class="invitation-wrapper" id="invitationWrapper">
+        <div class="invitation-card">
+            <div class="elegant-border"></div>
+
+            <div class="card-content">
+                <div class="names-header">Nouaman & Chaimae</div>
+                <div class="names-sub">Nodigen je uit voor</div>
+
+                <div class="divider">
+                    <span class="divider-icon">✦</span>
+                </div>
+
+                <h1 class="event-title">Khorja</h1>
+
+                <div class="event-subtitle">Bruiloftsstoet</div>
+
+                <div class="event-description">
+                    Een intiem moment om samen te vieren. We verzamelen bij het ouderlijk huis en rijden als stoet naar Chaimae om haar op te halen. Daarna volgt een loveshoot — alleen wij tweeen.
+                </div>
+
+                <div class="divider">
+                    <span class="divider-icon">✦</span>
+                </div>
+
+                <div class="details-section">
+                    <div class="detail-item">
+                        <div class="detail-icon">📅</div>
+                        <div class="detail-label">Wanneer</div>
+                        <div class="detail-value">Zaterdag 13 Juni 2026</div>
+                        <div class="detail-sub">In sha Allah</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">🕐</div>
+                        <div class="detail-label">Verzamelen</div>
+                        <div class="detail-value">12:00 uur</div>
+                        <div class="detail-sub">Vertrek 13:00 uur</div>
+                    </div>
+                </div>
+
+                <div class="location-section">
+                    <div class="location-icon">🏠</div>
+                    <div class="detail-label">Verzamelpunt</div>
+                    <div class="detail-value">Lichtenberchdreef 84</div>
+                    <div class="detail-sub">3562 RE Utrecht</div>
+                </div>
+
+                <div class="program-section">
+                    <div class="program-title">Programma</div>
+                    <div class="program-list">
+                        <div class="program-item">
+                            <div class="program-time">11:30</div>
+                            <div class="program-text">Verzamelen bij het ouderlijk huis van Nouaman</div>
+                        </div>
+                        <div class="program-item">
+                            <div class="program-time">13:00</div>
+                            <div class="program-text">Vertrek als stoet richting Chaimae</div>
+                        </div>
+                        <div class="program-item">
+                            <div class="program-time">13:30</div>
+                            <div class="program-text">Aankomst en ophalen van de bruid</div>
+                        </div>
+                        <div class="program-item">
+                            <div class="program-time">14:30</div>
+                            <div class="program-text">Loveshoot — alleen het bruidspaar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="thank-you-section">
+                    <div class="thank-you-title">Dankjewel</div>
+                    <div class="thank-you-text">
+                        We geven geen bruiloftsfeest, maar willen dit bijzondere moment wel graag met jullie delen. Bedankt dat jullie erbij zijn tijdens onze khorja. Jullie aanwezigheid betekent veel voor ons.
+                    </div>
+                </div>
+
+                <div class="contact-section">
+                    <div class="contact-title">Vragen?</div>
+                    <div class="contact-text">
+                        Neem gerust contact op<br>
+                        <a href="tel:+31612345678">06 12345678</a> of <a href="mailto:nouaman@email.nl">nouaman@email.nl</a>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <p>Met liefde,</p>
+                    <p class="footer-names">Nouaman & Chaimae</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const envelopeTouchArea = document.getElementById('envelopeTouchArea');
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+        const envelopeScene = document.getElementById('envelopeScene');
+        const invitationWrapper = document.getElementById('invitationWrapper');
+        const clickHint = document.getElementById('clickHint');
+        let isOpened = false;
+
+        function openEnvelope() {
+            if (isOpened) return;
+            isOpened = true;
+
+            clickHint.textContent = 'Openen...';
+
+            envelopeWrapper.classList.add('flipped');
+
+            setTimeout(() => {
+                envelopeWrapper.classList.add('open');
+            }, 600);
+
+            setTimeout(() => {
+                envelopeScene.classList.add('hidden');
+                invitationWrapper.classList.add('visible');
+            }, 1500);
+        }
+
+        envelopeTouchArea.addEventListener('click', openEnvelope);
+        envelopeTouchArea.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            openEnvelope();
+        }, {passive: false});
+
+        clickHint.addEventListener('click', openEnvelope);
+        clickHint.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            openEnvelope();
+        }, {passive: false});
+    </script>
+</body>
+</html>
