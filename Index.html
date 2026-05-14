@@ -24,19 +24,20 @@
         .front-corner-tr { top: 18px; right: 18px; border-left: none; border-bottom: none; }
         .front-corner-bl { bottom: 18px; left: 18px; border-right: none; border-top: none; }
         .front-corner-br { bottom: 18px; right: 18px; border-left: none; border-top: none; }
-        .front-content { text-align: center; z-index: 5; width: 100%; padding: 0 10px; }
-        .front-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; }
-        @media (min-width: 400px) { .front-label { font-size: 10px; margin-bottom: 12px; } }
-        .front-title { font-family: 'Great Vibes', cursive; font-size: 36px; background: linear-gradient(135deg, var(--taupe) 0%, var(--charcoal) 50%, var(--taupe-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px; line-height: 1.1; }
-        @media (min-width: 400px) { .front-title { font-size: 42px; } }
-        @media (min-width: 600px) { .front-title { font-size: 52px; } }
-        .front-sub { font-size: 10px; letter-spacing: 2px; color: var(--text-medium); text-transform: uppercase; margin-top: 10px; }
-        @media (min-width: 400px) { .front-sub { font-size: 11px; margin-top: 12px; } }
-        .front-personal { font-size: 11px; color: var(--taupe); font-style: italic; margin-top: 14px; letter-spacing: 1px; }
-        @media (min-width: 400px) { .front-personal { font-size: 12px; margin-top: 16px; } }
-        .front-seal { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); width: 45px; height: 45px; background: radial-gradient(circle at 35% 35%, var(--beige-light), var(--beige), var(--taupe-light)); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 6px 15px rgba(0,0,0,0.1); border: 2px solid var(--taupe); z-index: 10; pointer-events: none; }
-        @media (min-width: 400px) { .front-seal { width: 50px; height: 50px; bottom: 30px; } }
-        @media (min-width: 600px) { .front-seal { width: 60px; height: 60px; bottom: 40px; } }
+        .front-content { text-align: center; z-index: 5; width: 100%; padding: 0 10px; position: relative; }
+        .front-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; }
+        @media (min-width: 400px) { .front-label { font-size: 11px; margin-bottom: 12px; } }
+        .front-title { font-family: 'Great Vibes', cursive; font-size: 32px; background: linear-gradient(135deg, var(--taupe) 0%, var(--charcoal) 50%, var(--taupe-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px; line-height: 1.1; }
+        @media (min-width: 400px) { .front-title { font-size: 38px; } }
+        @media (min-width: 600px) { .front-title { font-size: 48px; } }
+        .front-sub { font-size: 11px; letter-spacing: 2px; color: var(--text-medium); text-transform: uppercase; margin-top: 10px; }
+        @media (min-width: 400px) { .front-sub { font-size: 12px; margin-top: 12px; } }
+        .front-personal { font-size: 13px; color: var(--taupe); font-style: italic; margin-top: 16px; letter-spacing: 1px; font-weight: 400; }
+        @media (min-width: 400px) { .front-personal { font-size: 14px; margin-top: 18px; } }
+        @media (min-width: 600px) { .front-personal { font-size: 15px; margin-top: 20px; } }
+        .front-seal { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 45px; height: 45px; background: radial-gradient(circle at 35% 35%, var(--beige-light), var(--beige), var(--taupe-light)); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 6px 15px rgba(0,0,0,0.1); border: 2px solid var(--taupe); z-index: 10; pointer-events: none; }
+        @media (min-width: 400px) { .front-seal { width: 50px; height: 50px; bottom: 25px; } }
+        @media (min-width: 600px) { .front-seal { width: 60px; height: 60px; bottom: 30px; } }
         .front-seal::before { content: ''; position: absolute; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; }
         @media (min-width: 400px) { .front-seal::before { width: 40px; height: 40px; } }
         @media (min-width: 600px) { .front-seal::before { width: 48px; height: 48px; } }
@@ -287,7 +288,7 @@
                     <div class="event-date-badge">Zaterdag 13 Juni 2026 — Ochtend</div>
                     <h1 class="event-title">Khorja</h1>
                     <div class="event-subtitle">Bruiloftsstoet</div>
-                    <div class="event-description">Een intiem moment om samen te vieren. We verzamelen bij het ouderlijk huis en rijden als stoet naar Chaimae om haar op te halen. Daarna volgt een familiefoto met iedereen — een moment om nooit te vergeten.</div>
+                    <div class="event-description">Een intiem moment om samen te vieren. We verzamelen bij het ouderlijk huis en rijden als stoet naar Chaimae om haar op te halen.</div>
                     <div class="divider"><span class="divider-icon">✦</span></div>
                     <div class="details-section">
                         <div class="detail-item">
@@ -311,6 +312,33 @@
                     </div>
                 </div>
                 <div class="event-section reveal">
+                    <div class="event-date-badge">Zaterdag 13 Juni 2026 — Middag</div>
+                    <h1 class="event-title">Fotoshoot</h1>
+                    <div class="event-subtitle">Familiefoto & loveshoot</div>
+                    <div class="event-description">Na de khorja maken we samen een mooie familiefoto. Daarna volgt een intieme loveshoot — alleen wij tweeën — om dit bijzondere moment vast te leggen.</div>
+                    <div class="divider"><span class="divider-icon">✦</span></div>
+                    <div class="details-section">
+                        <div class="detail-item">
+                            <div class="detail-icon">🗓️</div>
+                            <div class="detail-label">Wanneer</div>
+                            <div class="detail-value">Zaterdag 13 Juni 2026</div>
+                            <div class="detail-sub">In sha Allah</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">🕐</div>
+                            <div class="detail-label">Start</div>
+                            <div class="detail-value">15:00 uur</div>
+                            <div class="detail-sub">Familiefoto + loveshoot</div>
+                        </div>
+                    </div>
+                    <div class="location-section">
+                        <div class="location-icon">🏰</div>
+                        <div class="detail-label">Locatie</div>
+                        <div class="detail-value">Kasteel Assumburg</div>
+                        <div class="detail-sub">Heemskerk</div>
+                    </div>
+                </div>
+                <div class="event-section reveal">
                     <div class="event-date-badge">Zaterdag 13 Juni 2026 — Avond</div>
                     <h1 class="event-title">Welkom Bij Ons</h1>
                     <div class="event-subtitle">Een laatste avond in het ouderlijk huis</div>
@@ -325,7 +353,7 @@
                         </div>
                         <div class="detail-item">
                             <div class="detail-icon">🕐</div>
-                            <div class="detail-label">Aanvang</div>
+                            <div class="detail-label">Welkom</div>
                             <div class="detail-value">18:00 uur</div>
                             <div class="detail-sub">Wees welkom!</div>
                         </div>
@@ -343,29 +371,31 @@
                         <div class="program-item"><div class="program-time">11:30</div><div class="program-text">Verzamelen bij het ouderlijk huis van Nouaman — koffie en thee</div></div>
                         <div class="program-item"><div class="program-time">13:00</div><div class="program-text">Vertrek als stoet richting Chaimae</div></div>
                         <div class="program-item"><div class="program-time">13:30</div><div class="program-text">Aankomst en ophalen van de bruid</div></div>
-                        <div class="program-item"><div class="program-time">14:30</div><div class="program-text">Familiefoto — samen met iedereen</div></div>
                         <div class="program-divider">~ Vrije tijd ~</div>
-                        <div class="program-item"><div class="program-time">18:00</div><div class="program-text">Afscheidsdiner — een laatste avond samen in het ouderlijk huis</div></div>
-                        <div class="program-item"><div class="program-time">21:00</div><div class="program-text">Gezellig napraten en afsluiten van de dag</div></div>
+                        <div class="program-item"><div class="program-time">15:00</div><div class="program-text">Familiefoto & loveshoot bij Kasteel Assumburg, Heemskerk</div></div>
+                        <div class="program-divider">~ Vrije tijd ~</div>
+                        <div class="program-item"><div class="program-time">18:00</div><div class="program-text">Welkom bij het afscheidsdiner in het ouderlijk huis</div></div>
                     </div>
                 </div>
                 <div class="save-date-section reveal">
                     <div class="save-date-title">Save the Date</div>
                     <div class="save-date-text">Zet het meteen in je agenda, zodat je deze bijzondere dag niet mist.</div>
                     <div class="save-date-btns">
-                        <a href="#" class="save-date-btn" onclick="downloadICS('khorja', 'Khorja - Nouaman & Chaimae', '2026-06-13', '11:30', '14:30', 'Lichtenberchdreef 84, 3562 RE Utrecht'); return false;"><span class="save-date-btn-icon">📅</span>Khorja (ochtend)</a>
-                        <a href="#" class="save-date-btn" onclick="downloadICS('diner', 'Afscheidsdiner Nouaman & Chaimae', '2026-06-13', '18:00', '21:00', 'Lichtenberchdreef 84, 3562 RE Utrecht'); return false;"><span class="save-date-btn-icon">📅</span>Diner (avond)</a>
+                        <a href="#" class="save-date-btn" onclick="downloadICS('khorja', 'Khorja - Nouaman & Chaimae', '2026-06-13', '11:30', '14:00', 'Lichtenberchdreef 84, 3562 RE Utrecht'); return false;"><span class="save-date-btn-icon">📅</span>Khorja (ochtend)</a>
+                        <a href="#" class="save-date-btn" onclick="downloadICS('fotoshoot', 'Fotoshoot - Nouaman & Chaimae', '2026-06-13', '15:00', '17:00', 'Kasteel Assumburg, Heemskerk'); return false;"><span class="save-date-btn-icon">📅</span>Fotoshoot (middag)</a>
+                        <a href="#" class="save-date-btn" onclick="downloadICS('diner', 'Afscheidsdiner Nouaman & Chaimae', '2026-06-13', '18:00', '22:00', 'Lichtenberchdreef 84, 3562 RE Utrecht'); return false;"><span class="save-date-btn-icon">📅</span>Diner (avond)</a>
                     </div>
                 </div>
                 <div class="thank-you-section reveal">
                     <div class="thank-you-title">Dankjewel</div>
-                    <div class="thank-you-text">We geven geen groot bruiloftsfeest, maar willen deze bijzondere dag wel graag met jullie delen. Bedankt dat jullie erbij zijn tijdens onze khorja en het afscheidsdiner. Jullie aanwezigheid betekent veel voor ons.</div>
+                    <div class="thank-you-text">We geven geen groot bruiloftsfeest, maar willen deze bijzondere dag wel graag met jullie delen. Bedankt dat jullie erbij zijn tijdens onze khorja, de fotoshoot en het afscheidsdiner. Jullie aanwezigheid betekent veel voor ons.</div>
                 </div>
                 <div class="rsvp-section reveal">
                     <div class="rsvp-title">Laat het ons weten</div>
                     <div class="rsvp-text">Waar kom je bij? Stuur ons een berichtje via WhatsApp — dan weten we zeker dat we op je rekenen.</div>
                     <div class="rsvp-choices">
                         <a href="https://wa.me/?text=Hi%20Nouaman%20en%20Chaimae!%20Ik%20ben%20erbij%20bij%20de%20Khorja%20op%2013%20juni%20%E2%9D%A4%EF%B8%8F" class="rsvp-btn" target="_blank"><span class="rsvp-btn-icon">🚗</span>Ik ben bij de Khorja</a>
+                        <a href="https://wa.me/?text=Hi%20Nouaman%20en%20Chaimae!%20Ik%20ben%20erbij%20bij%20de%20fotoshoot%20op%2013%20juni%20%E2%9D%A4%EF%B8%8F" class="rsvp-btn" target="_blank"><span class="rsvp-btn-icon">📸</span>Ik ben bij de fotoshoot</a>
                         <a href="https://wa.me/?text=Hi%20Nouaman%20en%20Chaimae!%20Ik%20ben%20erbij%20bij%20het%20etentje%20op%2013%20juni%20%E2%9D%A4%EF%B8%8F" class="rsvp-btn" target="_blank"><span class="rsvp-btn-icon">🍽️</span>Ik ben bij het etentje</a>
                     </div>
                     <div class="rsvp-note">Of stuur een berichtje naar Nouaman of Chaimae persoonlijk</div>
@@ -492,7 +522,8 @@
                 'LOCATION:' + location,
                 'END:VEVENT',
                 'END:VCALENDAR'
-            ].join('\r\n');
+            ].join('
+');
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
