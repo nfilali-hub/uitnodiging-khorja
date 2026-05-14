@@ -142,6 +142,10 @@
         .location-section .detail-sub { color: rgba(255,255,255,0.9); position: relative; z-index: 1; font-size: 14px; }
         @media (min-width: 400px) { .location-section .detail-sub { font-size: 15px; } }
         @media (min-width: 600px) { .location-section .detail-sub { font-size: 16px; } }
+        .maps-link { display: inline-block; margin-top: 10px; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; color: white; text-decoration: none; font-size: 12px; letter-spacing: 1px; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3); position: relative; z-index: 1; }
+        @media (min-width: 400px) { .maps-link { font-size: 13px; padding: 10px 20px; } }
+        .maps-link:hover { background: rgba(255,255,255,0.35); }
+        .maps-link-icon { margin-right: 6px; }
         .program-section { margin-top: 30px; padding: 28px 20px; background: linear-gradient(135deg, var(--cream) 0%, var(--beige-light) 100%); border-radius: 12px; border: 1px solid var(--beige); position: relative; }
         @media (min-width: 400px) { .program-section { padding: 30px 22px; } }
         @media (min-width: 600px) { .program-section { margin-top: 40px; padding: 35px 25px; } }
@@ -182,7 +186,7 @@
         @media (min-width: 400px) { .save-date-text { font-size: 15px; } }
         @media (min-width: 600px) { .save-date-text { font-size: 16px; } }
         .save-date-btns { display: flex; flex-direction: column; gap: 10px; align-items: center; }
-        @media (min-width: 500px) { .save-date-btns { flex-direction: row; justify-content: center; gap: 15px; } }
+        @media (min-width: 500px) { .save-date-btns { flex-direction: row; justify-content: center; gap: 15px; flex-wrap: wrap; } }
         .save-date-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; background: white; color: var(--charcoal); text-decoration: none; border-radius: 30px; font-size: 13px; font-weight: 600; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid var(--beige); cursor: pointer; width: 100%; max-width: 220px; }
         @media (min-width: 400px) { .save-date-btn { padding: 14px 28px; font-size: 14px; } }
         .save-date-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: var(--cream); }
@@ -198,7 +202,7 @@
         @media (min-width: 400px) { .rsvp-text { font-size: 15px; } }
         @media (min-width: 600px) { .rsvp-text { font-size: 16px; } }
         .rsvp-choices { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
-        @media (min-width: 500px) { .rsvp-choices { flex-direction: row; justify-content: center; gap: 15px; } }
+        @media (min-width: 500px) { .rsvp-choices { flex-direction: row; justify-content: center; gap: 15px; flex-wrap: wrap; } }
         .rsvp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; background: white; color: var(--charcoal); text-decoration: none; border-radius: 30px; font-size: 14px; font-weight: 600; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid var(--beige); cursor: pointer; width: 100%; }
         @media (min-width: 400px) { .rsvp-btn { padding: 16px 28px; font-size: 15px; } }
         @media (min-width: 500px) { .rsvp-btn { width: auto; min-width: 200px; } }
@@ -327,7 +331,7 @@
                         <div class="detail-item">
                             <div class="detail-icon">🕐</div>
                             <div class="detail-label">Start</div>
-                            <div class="detail-value">15:00 uur</div>
+                            <div class="detail-value">15:30 uur</div>
                             <div class="detail-sub">Familiefoto + loveshoot</div>
                         </div>
                     </div>
@@ -370,9 +374,9 @@
                     <div class="program-list">
                         <div class="program-item"><div class="program-time">11:30</div><div class="program-text">Verzamelen bij het ouderlijk huis van Nouaman — koffie en thee</div></div>
                         <div class="program-item"><div class="program-time">13:00</div><div class="program-text">Vertrek als stoet richting Chaimae</div></div>
-                        <div class="program-item"><div class="program-time">13:30</div><div class="program-text">Aankomst en ophalen van de bruid</div></div>
+                        <div class="program-item"><div class="program-time">13:30</div><div class="program-text">Aankomst en ophalen van de bruid<br><a href="https://www.google.com/maps/search/?api=1&query=Boniplein+22+Amsterdam" class="maps-link" target="_blank"><span class="maps-link-icon">📍</span>Boniplein 22, Amsterdam</a></div></div>
                         <div class="program-divider">~ Vrije tijd ~</div>
-                        <div class="program-item"><div class="program-time">15:00</div><div class="program-text">Familiefoto & loveshoot bij Kasteel Assumburg, Heemskerk</div></div>
+                        <div class="program-item"><div class="program-time">15:30</div><div class="program-text">Familiefoto & loveshoot bij Kasteel Assumburg, Heemskerk</div></div>
                         <div class="program-divider">~ Vrije tijd ~</div>
                         <div class="program-item"><div class="program-time">18:00</div><div class="program-text">Welkom bij het afscheidsdiner in het ouderlijk huis</div></div>
                     </div>
@@ -382,7 +386,7 @@
                     <div class="save-date-text">Zet het meteen in je agenda, zodat je deze bijzondere dag niet mist.</div>
                     <div class="save-date-btns">
                         <a href="#" class="save-date-btn" onclick="downloadICS('khorja', 'Khorja - Nouaman & Chaimae', '2026-06-13', '11:30', '14:00', 'Lichtenberchdreef 84, 3562 RE Utrecht'); return false;"><span class="save-date-btn-icon">📅</span>Khorja (ochtend)</a>
-                        <a href="#" class="save-date-btn" onclick="downloadICS('fotoshoot', 'Fotoshoot - Nouaman & Chaimae', '2026-06-13', '15:00', '17:00', 'Kasteel Assumburg, Heemskerk'); return false;"><span class="save-date-btn-icon">📅</span>Fotoshoot (middag)</a>
+                        <a href="#" class="save-date-btn" onclick="downloadICS('fotoshoot', 'Fotoshoot - Nouaman & Chaimae', '2026-06-13', '15:30', '17:00', 'Kasteel Assumburg, Heemskerk'); return false;"><span class="save-date-btn-icon">📅</span>Fotoshoot (middag)</a>
                         <a href="#" class="save-date-btn" onclick="downloadICS('diner', 'Afscheidsdiner Nouaman & Chaimae', '2026-06-13', '18:00', '22:00', 'Lichtenberchdreef 84, 3562 RE Utrecht'); return false;"><span class="save-date-btn-icon">📅</span>Diner (avond)</a>
                     </div>
                 </div>
