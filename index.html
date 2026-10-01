@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quooker advies, revisie & service</title>
+<meta name="description" content="Onafhankelijke specialist voor Quooker-systemen. Laat uw voorkeur, storing, onderhoudsvraag of onderdeel beoordelen. Geen verkoop of bestelling via de website.">
+<style>
+:root{
+  --navy:#0b2d49;
+  --navy2:#08243a;
+  --red:#ef1748;
+  --blue:#79bfe3;
+  --ink:#0b0d0f;
+  --paper:#ffffff;
+  --mist:#f3f5f6;
+  --line:#d9dde0;
+  --muted:#6a7278;
+  --max:1320px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#fff;color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  line-height:1.45;overflow-x:hidden
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{color:inherit}
+img{display:block;max-width:100%}
+.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
+.kicker{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:850;color:var(--red)
+}
+h1,h2,h3,p{margin-top:0}
+h2{font-size:clamp(42px,5.2vw,76px);line-height:.95;letter-spacing:-.055em}
+p.lead{font-size:18px;color:var(--muted);max-width:680px}
+.arrow-link{display:inline-flex;align-items:center;gap:12px;font-weight:850}
+.arrow-link:after{content:"→";transition:.2s}
+.arrow-link:hover:after{transform:translateX(5px)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:0 18px;border:1px solid currentColor;background:transparent;
+  border-radius:0;font-weight:850;cursor:pointer
+}
+.btn.red{background:var(--red);border-color:var(--red);color:white}
+.btn.white{border-color:#fff;color:#fff}
+.btn.dark{background:#111;border-color:#111;color:#fff}
+
+/* HEADER */
+.site-header{
+  position:absolute;z-index:40;left:0;right:0;top:0;color:white
+}
+.nav{
+  height:86px;display:flex;align-items:center;justify-content:space-between;gap:28px
+}
+.brand{
+  font-weight:950;letter-spacing:-.045em;font-size:21px;white-space:nowrap
+}
+.brand i{font-style:normal;color:var(--red)}
+.navlinks{display:flex;gap:28px;font-size:13px}
+.navlinks a{opacity:.82}.navlinks a:hover{opacity:1}
+.nav-action{font-size:13px;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px}
+
+/* HERO - diagonal editorial composition */
+.hero{
+  min-height:760px;background:var(--navy);color:white;position:relative;overflow:hidden
+}
+.hero-photo{
+  position:absolute;right:0;top:0;width:56%;height:100%;
+  background:
+    linear-gradient(90deg,rgba(11,45,73,.9) 0%,rgba(11,45,73,.35) 24%,rgba(11,45,73,.04) 62%),
+    url("assets/hero-macro-mono.jpg") center/cover no-repeat;
+  clip-path:polygon(18% 0,100% 0,100% 100%,0 100%);
+}
+.hero-photo:after{
+  content:"";position:absolute;inset:0;background:rgba(40,88,117,.2);mix-blend-mode:screen
+}
+.hero-redline{
+  position:absolute;top:0;left:49.2%;height:100%;width:2px;background:var(--red);
+  transform:skewX(-10deg);transform-origin:top
+}
+.hero-inner{
+  position:relative;z-index:3;min-height:760px;display:flex;align-items:center
+}
+.hero-copy{width:54%;padding-top:50px}
+.hero-kicker{display:flex;gap:10px;align-items:center;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#b7c7d4;margin-bottom:18px}
+.hero-kicker:before{content:"";width:28px;height:2px;background:var(--red)}
+.hero h1{
+  margin:0 0 26px;font-size:clamp(66px,7.8vw,124px);line-height:.78;
+  letter-spacing:-.07em;text-transform:uppercase
+}
+.hero h1 .outline{
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.78)
+}
+.hero h1 .red{color:var(--red)}
+.hero-sub{
+  max-width:520px;color:#d1dde5;font-size:16px;margin-bottom:30px
+}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.hero-side-note{
+  position:absolute;right:28px;bottom:28px;writing-mode:vertical-rl;
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#c7d4dc
+}
+
+/* TICKER */
+.ticker{height:52px;background:var(--red);color:white;overflow:hidden;display:flex;align-items:center}
+.ticker-track{
+  display:flex;gap:34px;min-width:max-content;white-space:nowrap;
+  font-weight:850;font-size:14px;animation:ticker 26s linear infinite
+}
+.ticker-track span:after{content:"↗";margin-left:20px}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* INTRO */
+.intro{padding:104px 0 116px;background:#fff}
+.intro-grid{
+  display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:start
+}
+.intro-small{padding-top:10px;max-width:290px;color:var(--muted);font-size:14px}
+.intro-statement{
+  font-size:clamp(38px,4vw,63px);line-height:.98;letter-spacing:-.055em;font-weight:850
+}
+.intro-statement span{color:var(--red)}
+
+/* ROUTE AREA - no cards */
+.routes-section{background:#f0f1f0;padding:92px 0 108px}
+.routes-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:60px;margin-bottom:44px}
+.routes-head h2{color:var(--navy);max-width:460px}
+.routes-head p{max-width:520px;color:var(--muted);padding-top:18px}
+.route-layout{
+  display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center
+}
+.route-list{border-top:1px solid #bfc5c8}
+.route-row{
+  width:100%;display:grid;grid-template-columns:34px 1fr 24px;gap:12px;
+  padding:19px 4px;border:0;border-bottom:1px solid #bfc5c8;background:none;
+  text-align:left;font-size:23px;font-weight:780;cursor:pointer;color:var(--navy)
+}
+.route-row .n{font-size:10px;color:var(--red);padding-top:7px}
+.route-row .a{font-size:19px;font-weight:400;transition:.2s}
+.route-row:hover .a,.route-row.active .a{transform:translateX(5px)}
+.route-row.active{color:var(--red)}
+.route-visual{position:relative;min-height:420px}
+.route-visual:before{
+  content:"";position:absolute;right:0;top:0;width:74%;height:100%;background:var(--navy);
+  clip-path:polygon(15% 0,100% 0,100% 100%,0 100%)
+}
+.route-visual img{
+  position:absolute;right:6%;bottom:-2%;width:58%;height:88%;object-fit:contain;
+  filter:drop-shadow(0 22px 28px rgba(0,0,0,.15))
+}
+.route-visual .ring{
+  position:absolute;right:5%;top:-20px;width:74px;height:74px;border:13px solid var(--red);border-radius:50%
+}
+.route-copy{
+  position:absolute;left:3%;top:12%;z-index:3;width:45%;color:var(--navy)
+}
+.route-copy b{display:block;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.route-copy h3{font-size:34px;line-height:.98;margin-bottom:12px}
+.route-copy p{font-size:13px;color:#657078}
+
+/* PRODUCT PREFERENCE */
+.preference{padding:108px 0 120px;background:#fff}
+.pref-top{
+  display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:end;margin-bottom:52px
+}
+.pref-top p{max-width:610px;color:var(--muted)}
+.pref-stage{
+  display:grid;grid-template-columns:260px 1fr 340px;gap:38px;align-items:stretch;min-height:560px
+}
+.model-list{border-top:1px solid var(--line);align-self:center}
+.model-btn{
+  width:100%;display:grid;grid-template-columns:1fr auto;gap:20px;
+  border:0;border-bottom:1px solid var(--line);background:none;padding:18px 2px;
+  font-weight:800;text-align:left;cursor:pointer;color:#687077
+}
+.model-btn.active{color:var(--red)}
+.model-btn span:last-child{font-weight:400}
+.product-space{
+  position:relative;background:#f4f5f5;min-height:560px;overflow:hidden
+}
+.product-space:before{
+  content:"";position:absolute;left:-18%;bottom:-46%;width:520px;height:520px;
+  border:72px solid var(--blue);border-radius:50%;opacity:.34
+}
+.product-space img{
+  position:absolute;width:76%;height:86%;object-fit:contain;left:12%;top:6%;
+  mix-blend-mode:multiply;transition:opacity .2s,transform .3s
+}
+.product-space .caption{
+  position:absolute;left:18px;bottom:16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#737b80
+}
+.pref-control{display:flex;flex-direction:column;justify-content:center}
+.pref-control .big-model{
+  font-size:48px;line-height:.95;font-weight:900;letter-spacing:-.05em;margin:8px 0 18px
+}
+.pref-control p{color:var(--muted);font-size:14px}
+.finish-label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#777;margin-top:18px}
+.swatches{display:flex;gap:11px;flex-wrap:wrap;margin:15px 0 22px}
+.swatch{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;position:relative}
+.swatch.active:after{
+  content:"";position:absolute;inset:-5px;border:2px solid var(--red);border-radius:50%
+}
+.s-chrome{background:linear-gradient(135deg,#fff,#9ea5a7)}
+.s-rvs{background:linear-gradient(135deg,#eceeee,#7d8587)}
+.s-black{background:linear-gradient(135deg,#595959,#090909)}
+.s-gun{background:linear-gradient(135deg,#696c69,#282b28)}
+.s-copper{background:linear-gradient(135deg,#eba689,#9e5039)}
+.s-brass{background:linear-gradient(135deg,#e2cca2,#a47b48)}
+.legal-note{
+  margin-top:22px;border-top:1px solid var(--line);padding-top:14px;
+  font-size:11px;color:#7a8084
+}
+
+/* RESERVOIRS - typography, not cards */
+.reservoirs{
+  position:relative;background:var(--navy);color:white;overflow:hidden;padding:104px 0 118px
+}
+.reservoirs:after{
+  content:"";position:absolute;right:-10%;top:0;width:52%;height:100%;background:#0e3859;
+  clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)
+}
+.res-wrap{position:relative;z-index:2;display:grid;grid-template-columns:.72fr 1.28fr;gap:80px}
+.res-intro p{color:#bbcbd5;max-width:360px}
+.res-list{border-top:1px solid rgba(255,255,255,.28)}
+.res-option{
+  width:100%;display:grid;grid-template-columns:110px 1fr auto;gap:30px;align-items:center;
+  padding:25px 0;border:0;border-bottom:1px solid rgba(255,255,255,.28);
+  background:none;color:white;text-align:left;cursor:pointer
+}
+.res-option .num{font-size:11px;color:#8ca1ae}
+.res-option .name{font-size:38px;font-weight:900;letter-spacing:-.045em}
+.res-option .desc{font-size:13px;color:#aebfc9;max-width:340px}
+.res-option .pick{font-size:20px}
+.res-option.active .name{color:var(--red)}
+.res-option.active .pick{color:var(--red)}
+.res-help{
+  margin-top:28px;display:flex;justify-content:space-between;gap:30px;align-items:center;
+  border-top:1px solid rgba(255,255,255,.28);padding-top:20px
+}
+.res-help small{color:#aebfc9;max-width:530px}
+
+/* CUBE */
+.cube{
+  min-height:580px;background:var(--blue);position:relative;overflow:hidden;color:#08263a
+}
+.cube-white{
+  position:absolute;right:0;top:0;width:48%;height:100%;background:white;
+  clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)
+}
+.cube-inner{
+  position:relative;z-index:2;min-height:580px;display:grid;grid-template-columns:1fr 1fr;align-items:center
+}
+.cube-copy{padding-right:80px}
+.cube-copy h2{font-size:clamp(62px,7vw,110px);margin:6px 0 22px}
+.cube-copy p{max-width:500px;color:#23495f}
+.cube-media{position:relative;height:580px}
+.cube-media img{
+  position:absolute;height:88%;width:78%;object-fit:contain;right:5%;bottom:0;mix-blend-mode:multiply
+}
+.cube-toggle{
+  margin-top:26px;display:inline-flex;gap:10px;align-items:center;font-weight:850;cursor:pointer
+}
+.cube-toggle span{
+  width:46px;height:24px;border:2px solid #0a3852;border-radius:30px;position:relative
+}
+.cube-toggle span:before{
+  content:"";position:absolute;width:14px;height:14px;border-radius:50%;background:#0a3852;left:4px;top:3px;transition:.2s
+}
+.cube-toggle.active span:before{left:24px;background:var(--red)}
+.cube-toggle.active span{border-color:var(--red)}
+
+/* SERVICE */
+.service{background:#0a0b0c;color:white;position:relative}
+.service-grid{display:grid;grid-template-columns:1fr 1fr;min-height:690px}
+.service-image{
+  position:relative;background:url("assets/hero-macro.jpg") center/cover no-repeat;overflow:hidden
+}
+.service-image:after{
+  content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.12),rgba(0,0,0,.74))
+}
+.service-big{
+  position:absolute;left:32px;bottom:30px;z-index:2;font-size:clamp(54px,6vw,95px);
+  line-height:.82;letter-spacing:-.07em;font-weight:950;text-transform:uppercase
+}
+.service-copy{padding:90px 7vw 70px 60px}
+.service-copy h2{font-size:52px}
+.service-copy p{color:#aab0b4;max-width:520px}
+.issue-list{margin-top:34px;border-top:1px solid #34373a}
+.issue{
+  width:100%;display:grid;grid-template-columns:1fr auto;align-items:center;
+  padding:16px 0;border:0;border-bottom:1px solid #34373a;background:none;
+  color:white;text-align:left;font-size:18px;font-weight:720;cursor:pointer
+}
+.issue span:last-child{font-weight:400;color:#70777c;transition:.2s}
+.issue:hover{color:var(--red)}.issue:hover span:last-child{transform:translateX(5px);color:var(--red)}
+
+/* PARTS */
+.parts{padding:110px 0;background:#fff}
+.parts-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:70px}
+.parts-left{padding-top:10px}
+.parts-left h2{color:var(--navy)}
+.parts-left p{color:var(--muted);max-width:390px}
+.parts-image{position:relative;min-height:480px;background:#f3f5f6;overflow:hidden}
+.parts-image img{position:absolute;height:88%;width:50%;object-fit:contain;right:8%;bottom:0;mix-blend-mode:multiply}
+.parts-image .ghost{
+  position:absolute;left:-20px;bottom:-20px;font-size:120px;font-weight:950;letter-spacing:-.07em;color:rgba(11,45,73,.06)
+}
+.parts-links{margin-top:26px;border-top:1px solid var(--line)}
+.part-link{
+  width:100%;display:grid;grid-template-columns:1fr auto;padding:14px 0;border:0;border-bottom:1px solid var(--line);
+  background:none;text-align:left;cursor:pointer;font-weight:780
+}
+.part-link:hover{color:var(--red)}
+
+/* FINAL FORM */
+.apply{background:#eef0ef;padding:105px 0 0}
+.apply-head{display:grid;grid-template-columns:.78fr 1.22fr;gap:70px;padding-bottom:52px}
+.apply-head h2{color:var(--navy)}
+.apply-head p{color:var(--muted);max-width:580px;padding-top:16px}
+.apply-body{background:var(--navy);color:white;position:relative;overflow:hidden}
+.apply-body:after{
+  content:"";position:absolute;right:-8%;top:0;width:43%;height:100%;background:#103b5d;
+  clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)
+}
+.form-wrap{
+  position:relative;z-index:2;display:grid;grid-template-columns:.64fr 1.36fr;gap:70px;padding:64px 0 72px
+}
+.selection-summary{font-size:14px;color:#bdd0dc}
+.selection-summary strong{display:block;color:white;font-size:32px;line-height:1.05;margin:12px 0 20px}
+.selection-line{border-top:1px solid rgba(255,255,255,.25);padding:10px 0;display:flex;justify-content:space-between;gap:20px}
+.selection-line span:first-child{color:#91a7b5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,textarea,select{
+  width:100%;border:0;border-bottom:1px solid rgba(255,255,255,.35);
+  background:transparent;color:white;padding:14px 4px;border-radius:0;outline:none
+}
+input::placeholder,textarea::placeholder{color:#9fb2be}
+select option{color:#111}
+textarea{min-height:105px;resize:vertical}
+.full{grid-column:1/-1}
+.file-line{font-size:12px;color:#9fb2be;padding:10px 0}
+.submit-row{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:18px}
+.submit-row small{color:#8fa5b3;max-width:470px}
+.submit-row button{min-width:190px}
+
+/* FOOTER */
+footer{background:#081d2e;color:#879aa6;padding:38px 0 52px;font-size:12px}
+.footer-row{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:40px}
+.footer-row strong{color:white}
+.footer-disc{border-top:1px solid #1b3344;margin-top:28px;padding-top:20px;max-width:980px;font-size:10px;line-height:1.55}
+
+/* STICKY STATUS */
+.status{
+  position:fixed;z-index:70;right:18px;bottom:18px;background:white;color:#111;
+  width:min(520px,calc(100% - 36px));display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding:13px 14px 13px 18px;box-shadow:0 12px 34px rgba(0,0,0,.18);border-left:4px solid var(--red)
+}
+.status small{display:block;color:#737b80;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+.status b{font-size:13px}
+.status a{font-size:12px;font-weight:850;color:var(--red);white-space:nowrap}
+
+/* ANIM */
+.reveal{opacity:0;transform:translateY(18px);transition:.65s ease}
+.reveal.on{opacity:1;transform:none}
+
+@media(max-width:950px){
+  .wrap{width:min(100% - 28px,var(--max))}
+  .navlinks{display:none}
+  .hero{min-height:720px}.hero-inner{min-height:720px}
+  .hero-photo{width:100%;opacity:.46;clip-path:polygon(38% 0,100% 0,100% 100%,12% 100%)}
+  .hero-redline{left:72%}
+  .hero-copy{width:88%}
+  .hero h1{font-size:clamp(61px,15vw,100px)}
+  .intro-grid,.routes-head,.route-layout,.pref-top,.res-wrap,.cube-inner,.service-grid,.parts-grid,.apply-head,.form-wrap{grid-template-columns:1fr}
+  .intro-grid{gap:34px}
+  .route-visual{min-height:390px}
+  .route-copy{width:52%}
+  .pref-stage{grid-template-columns:1fr}
+  .model-list{display:flex;overflow:auto;gap:16px;border:0;padding-bottom:5px}
+  .model-btn{width:auto;min-width:max-content;border:0;border-bottom:2px solid transparent;padding:8px 0}
+  .model-btn.active{border-color:var(--red)}
+  .product-space{min-height:430px}
+  .pref-control{padding-top:10px}
+  .res-option{grid-template-columns:55px 1fr 20px}
+  .res-option .desc{grid-column:2}
+  .cube-white{width:58%}.cube-copy{padding:70px 0 0}
+  .cube-media{height:440px}
+  .service-copy{padding:70px 20px 80px}.service-image{min-height:520px}
+  .parts-image{min-height:390px}
+  .form-wrap{gap:40px}
+  .footer-row{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .hero{min-height:680px}.hero-inner{min-height:680px}
+  .hero-copy{width:100%;padding-top:76px}
+  .hero h1{font-size:62px}
+  .hero-sub{font-size:15px}
+  .hero-side-note{display:none}
+  .ticker{height:46px}.ticker-track{font-size:12px}
+  .intro,.routes-section,.preference,.reservoirs,.parts{padding-top:78px;padding-bottom:82px}
+  .intro-statement{font-size:39px}
+  .route-row{font-size:19px}
+  .route-visual{min-height:340px}
+  .route-visual:before{width:72%}
+  .route-visual img{width:56%;right:6%}
+  .route-copy{width:54%;left:0}.route-copy h3{font-size:27px}
+  .product-space{min-height:360px}.product-space img{height:82%;top:8%}
+  .pref-control .big-model{font-size:40px}
+  .res-option .name{font-size:31px}
+  .res-help{align-items:flex-start;flex-direction:column}
+  .cube{min-height:650px}.cube-inner{min-height:650px}.cube-copy{padding-right:0}.cube-copy h2{font-size:70px}
+  .cube-media{height:330px}.cube-media img{width:90%;right:0}
+  .service-image{min-height:430px}.service-big{font-size:58px}
+  .parts-image img{width:65%}.parts-image .ghost{font-size:78px}
+  .form-grid{grid-template-columns:1fr}.full{grid-column:auto}
+  .submit-row{align-items:flex-start;flex-direction:column}
+  .status{left:10px;right:10px;bottom:10px;width:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top">Q<i>•</i> specialist</a>
+    <nav class="navlinks">
+      <a href="#voorkeur">Systemen</a>
+      <a href="#reservoirs">Reservoirs</a>
+      <a href="#service">Service</a>
+      <a href="#onderdelen">Onderdelen</a>
+      <a href="#aanvraag">Aanvraag</a>
+    </nav>
+    <a class="nav-action" href="#aanvraag">Laat beoordelen ↗</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-redline"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy reveal">
+      <div class="hero-kicker">Onafhankelijk · advies · revisie · service</div>
+      <h1>ALLES<br><span class="outline">VOOR UW</span><br><span class="red">QUOOKER.</span></h1>
+      <p class="hero-sub">Een systeem laten beoordelen, onderhoud nodig, een storing of op zoek naar een onderdeel? U dient een aanvraag in. Daarna wordt bekeken wat technisch en praktisch passend is.</p>
+      <div class="hero-actions">
+        <a class="btn red" href="#voorkeur">Mijn voorkeur doorgeven</a>
+        <a class="btn white" href="#service">Ik heb een probleem</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-side-note">Geen bestelling · geen checkout · aanvraag na beoordeling</div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Advies</span><span>Revisie</span><span>Onderhoud</span><span>Reparatie</span><span>Onderdelen</span><span>Diagnose</span><span>CUBE</span>
+    <span>Advies</span><span>Revisie</span><span>Onderhoud</span><span>Reparatie</span><span>Onderdelen</span><span>Diagnose</span><span>CUBE</span>
+  </div>
+</div>
+
+<section class="intro">
+  <div class="wrap intro-grid reveal">
+    <div class="intro-small">
+      <div class="kicker">Eerst beoordelen</div>
+      <p>Geen automatische verkoop. Geen standaardantwoord. Iedere aanvraag wordt eerst bekeken op systeem, situatie, klacht en technische haalbaarheid.</p>
+    </div>
+    <div class="intro-statement">Niet alles wat defect lijkt, hoeft vervangen te worden. En niet iedere combinatie past bij iedere keuken. <span>Eerst weten wat er nodig is.</span></div>
+  </div>
+</section>
+
+<section class="routes-section">
+  <div class="wrap">
+    <div class="routes-head reveal">
+      <h2>Waar gaat uw aanvraag over?</h2>
+      <p>Kies de route die het beste past. De website verzamelt alleen de relevante informatie. Daarna volgt persoonlijke beoordeling.</p>
+    </div>
+
+    <div class="route-layout reveal">
+      <div class="route-list">
+        <button class="route-row active" data-route="systeem"><span class="n">01</span><span>Interesse in een systeem</span><span class="a">↗</span></button>
+        <button class="route-row" data-route="service"><span class="n">02</span><span>Service of onderhoud</span><span class="a">↗</span></button>
+        <button class="route-row" data-route="storing"><span class="n">03</span><span>Storing laten beoordelen</span><span class="a">↗</span></button>
+        <button class="route-row" data-route="onderdeel"><span class="n">04</span><span>Onderdeel identificeren</span><span class="a">↗</span></button>
+        <button class="route-row" data-route="advies"><span class="n">05</span><span>Technische vraag of advies</span><span class="a">↗</span></button>
+      </div>
+
+      <div class="route-visual">
+        <div class="ring"></div>
+        <div class="route-copy">
+          <b id="routeTag">Systeem</b>
+          <h3 id="routeTitle">Geef uw voorkeur door.</h3>
+          <p id="routeText">Kies een model, finish en reservoir. De selectie is geen bestelling en wordt eerst beoordeeld.</p>
+        </div>
+        <img id="routeImage" src="assets/fusion-square.jpg" alt="Quooker productvoorbeeld">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="preference" id="voorkeur">
+  <div class="wrap">
+    <div class="pref-top reveal">
+      <div><div class="kicker">Uw voorkeur</div><h2>Kies. Wij beoordelen.</h2></div>
+      <p>Gebruik de modellen alleen om duidelijk te maken waar uw voorkeur naar uitgaat. Beschikbaarheid, uitvoering, technische passendheid en eventuele werkzaamheden worden pas na de aanvraag beoordeeld.</p>
+    </div>
+
+    <div class="pref-stage reveal">
+      <div class="model-list">
+        <button class="model-btn active" data-model="Flex Round" data-img="assets/flex-round.jpg" data-desc="Flexibele uitloop voor extra bereik bij dagelijks gebruik."><span>Flex Round</span><span>01</span></button>
+        <button class="model-btn" data-model="Flex Square" data-img="assets/flex-square.jpg" data-desc="Flex-functionaliteit in een strakkere, vierkante vorm."><span>Flex Square</span><span>02</span></button>
+        <button class="model-btn" data-model="Fusion Round" data-img="assets/fusion-round.jpg" data-desc="Ronde alles-in-één kraan voor warm, koud en kokend water."><span>Fusion Round</span><span>03</span></button>
+        <button class="model-btn" data-model="Fusion Square" data-img="assets/fusion-square.jpg" data-desc="Strakke alles-in-één kraan met vierkante lijnvoering."><span>Fusion Square</span><span>04</span></button>
+      </div>
+
+      <div class="product-space">
+        <img id="productImage" src="assets/flex-round.jpg" alt="Geselecteerd Quooker model">
+        <span class="caption">Productbeeld · indicatieve selectie</span>
+      </div>
+
+      <div class="pref-control">
+        <div class="kicker">Geselecteerd</div>
+        <div class="big-model" id="modelName">Flex Round</div>
+        <p id="modelDesc">Flexibele uitloop voor extra bereik bij dagelijks gebruik.</p>
+
+        <div class="finish-label">Afwerking</div>
+        <div class="swatches">
+          <button class="swatch s-chrome active" data-finish="Chroom" aria-label="Chroom"></button>
+          <button class="swatch s-rvs" data-finish="RVS" aria-label="RVS"></button>
+          <button class="swatch s-black" data-finish="Zwart" aria-label="Zwart"></button>
+          <button class="swatch s-gun" data-finish="Gunmetal" aria-label="Gunmetal"></button>
+          <button class="swatch s-copper" data-finish="Rosé koper" aria-label="Rosé koper"></button>
+          <button class="swatch s-brass" data-finish="Messing patina" aria-label="Messing patina"></button>
+        </div>
+        <strong id="finishName">Chroom</strong>
+
+        <div class="legal-note">Uw selectie is uitsluitend een voorkeur in een aanvraag. Via deze website wordt geen product besteld, gekocht of automatisch gereserveerd.</div>
+        <a class="arrow-link" href="#reservoirs" style="margin-top:22px">Verder naar reservoir</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reservoirs" id="reservoirs">
+  <div class="wrap res-wrap reveal">
+    <div class="res-intro">
+      <div class="kicker">Reservoir</div>
+      <h2>Wat past bij uw situatie?</h2>
+      <p>Geef aan waar uw voorkeur naar uitgaat. Weet u het niet, dan hoeft u niets te gokken: maak er een adviesvraag van.</p>
+    </div>
+
+    <div>
+      <div class="res-list">
+        <button class="res-option active" data-res="PRO3">
+          <span class="num">01</span><span><span class="name">PRO3</span><span class="desc">Compact kokendwaterreservoir. Passendheid wordt bij de aanvraag gecontroleerd.</span></span><span class="pick">●</span>
+        </button>
+        <button class="res-option" data-res="COMBI">
+          <span class="num">02</span><span><span class="name">COMBI</span><span class="desc">Voor situaties waarin kokend én warm water vanuit het reservoir gewenst kan zijn.</span></span><span class="pick">○</span>
+        </button>
+        <button class="res-option" data-res="COMBI+">
+          <span class="num">03</span><span><span class="name">COMBI+</span><span class="desc">Kan relevant zijn wanneer een warmwaterleiding aanwezig is maar lang wachten een rol speelt.</span></span><span class="pick">○</span>
+        </button>
+      </div>
+
+      <div class="res-help">
+        <small>Niet zeker? In het formulier kunt u aangeven of er een warmwaterleiding aanwezig is en of warm water lang op zich laat wachten.</small>
+        <button class="btn white" id="adviceReservoir" type="button">Laat reservoir adviseren</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cube" id="cube">
+  <div class="cube-white"></div>
+  <div class="wrap cube-inner reveal">
+    <div class="cube-copy">
+      <div class="kicker" style="color:#0b5579">Uitbreiding</div>
+      <h2>CUBE.</h2>
+      <p>Geef aan of gekoeld en bruisend water onderdeel mag zijn van de beoordeling. De CUBE wordt niet automatisch toegevoegd of verkocht; de aanvraag wordt eerst technisch bekeken.</p>
+      <button class="cube-toggle" id="cubeToggle" type="button"><span></span> CUBE meenemen in mijn aanvraag</button>
+    </div>
+    <div class="cube-media"><img src="assets/cube.jpg" alt="Quooker CUBE"></div>
+  </div>
+</section>
+
+<section class="service" id="service">
+  <div class="service-grid reveal">
+    <div class="service-image">
+      <div class="service-big">QUOOKER<br>DEFECT?</div>
+    </div>
+
+    <div class="service-copy">
+      <div class="kicker">Service · onderhoud · diagnose</div>
+      <h2>Vertel wat er gebeurt.</h2>
+      <p>Een knipperend reservoir, lekkage of een kraan die anders reageert dan normaal? Selecteer het probleem. U kunt daarna foto's en het typeplaatje meesturen.</p>
+
+      <div class="issue-list">
+        <button class="issue" data-issue="Reservoir knippert"><span>Reservoir knippert</span><span>↗</span></button>
+        <button class="issue" data-issue="Geen kokend water"><span>Geen kokend water</span><span>↗</span></button>
+        <button class="issue" data-issue="Water wordt niet heet genoeg"><span>Water wordt niet heet genoeg</span><span>↗</span></button>
+        <button class="issue" data-issue="Lekkage"><span>Lekkage</span><span>↗</span></button>
+        <button class="issue" data-issue="Kraan of binnenwerk probleem"><span>Kraan / binnenwerk</span><span>↗</span></button>
+        <button class="issue" data-issue="Flex slang probleem"><span>Flex-slang</span><span>↗</span></button>
+        <button class="issue" data-issue="CUBE probleem"><span>CUBE</span><span>↗</span></button>
+        <button class="issue" data-issue="Onderhoud / ontkalken"><span>Onderhoud / ontkalken</span><span>↗</span></button>
+        <button class="issue" data-issue="Onbekende storing"><span>Ik weet niet wat er mis is</span><span>↗</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="parts" id="onderdelen">
+  <div class="wrap parts-grid reveal">
+    <div class="parts-left">
+      <div class="kicker">Onderdelen</div>
+      <h2>Eerst identificeren. Dan pas handelen.</h2>
+      <p>Een foto, typeplaatje en korte klachtomschrijving zeggen vaak meer dan zelf een onderdeelnummer raden. Selecteer de categorie en laat het beoordelen.</p>
+
+      <div class="parts-links">
+        <button class="part-link" data-part="Kraan / binnenwerk"><span>Kraan & binnenwerk</span><span>↗</span></button>
+        <button class="part-link" data-part="Perlator / uitloop"><span>Perlator & uitloop</span><span>↗</span></button>
+        <button class="part-link" data-part="Reservoir"><span>Reservoir</span><span>↗</span></button>
+        <button class="part-link" data-part="Slangen / koppelingen"><span>Slangen & koppelingen</span><span>↗</span></button>
+        <button class="part-link" data-part="Mengventiel"><span>Mengventiel</span><span>↗</span></button>
+        <button class="part-link" data-part="CUBE / filter"><span>CUBE & filter</span><span>↗</span></button>
+      </div>
+    </div>
+
+    <div class="parts-image">
+      <div class="ghost">SERVICE</div>
+      <img src="assets/reservoir.jpg" alt="Quooker reservoir">
+    </div>
+  </div>
+</section>
+
+<section class="apply" id="aanvraag">
+  <div class="wrap apply-head reveal">
+    <div><div class="kicker">Aanvraag</div><h2>Laat het beoordelen.</h2></div>
+    <p>Uw voorkeur of klacht wordt als aanvraag verzonden. Er ontstaat via deze website geen bestelling of koopovereenkomst. Na beoordeling kan om aanvullende informatie worden gevraagd of persoonlijk contact worden opgenomen.</p>
+  </div>
+
+  <div class="apply-body">
+    <div class="wrap form-wrap reveal">
+      <div class="selection-summary">
+        <span>Huidige selectie</span>
+        <strong id="sumModel">Flex Round</strong>
+        <div class="selection-line"><span>Finish</span><b id="sumFinish">Chroom</b></div>
+        <div class="selection-line"><span>Reservoir</span><b id="sumReservoir">PRO3</b></div>
+        <div class="selection-line"><span>CUBE</span><b id="sumCube">Niet geselecteerd</b></div>
+        <div class="selection-line"><span>Klacht / service</span><b id="sumIssue">-</b></div>
+        <div class="selection-line"><span>Onderdeel</span><b id="sumPart">-</b></div>
+      </div>
+
+      <form name="quooker-aanvraag" method="POST" data-netlify="true" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="quooker-aanvraag">
+        <input type="hidden" name="selectie" id="hiddenSelection">
+        <input type="hidden" name="klacht" id="hiddenIssue">
+        <input type="hidden" name="onderdeel" id="hiddenPart">
+
+        <div class="form-grid">
+          <select name="type_aanvraag" id="requestType">
+            <option>Interesse / systeem laten beoordelen</option>
+            <option>Service / onderhoud</option>
+            <option>Storing / reparatie</option>
+            <option>Onderdeel identificeren</option>
+            <option>Technisch advies</option>
+            <option>Klacht / second opinion</option>
+          </select>
+          <input name="postcode" placeholder="Postcode">
+          <input name="naam" placeholder="Naam" required>
+          <input name="telefoon" placeholder="Telefoonnummer" required>
+          <input name="email" type="email" placeholder="E-mailadres">
+          <input name="huidig_systeem" placeholder="Huidig systeem / bouwjaar indien bekend">
+          <textarea class="full" name="omschrijving" id="message" placeholder="Beschrijf uw situatie, vraag of klacht"></textarea>
+          <label class="file-line full">Foto of typeplaatje toevoegen (optioneel)<br><input type="file" name="bijlage" accept="image/*,.pdf"></label>
+        </div>
+
+        <div class="submit-row">
+          <small>Door dit formulier te versturen doet u uitsluitend een aanvraag ter beoordeling. Beschikbaarheid, prijs, werkzaamheden en voorwaarden worden niet automatisch door de website vastgesteld.</small>
+          <button class="btn red" type="submit">Aanvraag indienen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="status">
+  <div><small>Uw aanvraag</small><b id="statusText">Flex Round · Chroom · PRO3</b></div>
+  <a href="#aanvraag">Afronden →</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div><strong>Q• specialist</strong><p>Onafhankelijke dienstverlening rond Quooker-systemen: beoordeling, revisie, service, onderhoud en onderdelen.</p></div>
+      <div><strong>Contact</strong><p>Telefoonnummer<br>E-mailadres<br>Werkgebied</p></div>
+      <div><strong>Informatie</strong><p>Privacy<br>Klachtenprocedure<br>Voorwaarden</p></div>
+    </div>
+    <div class="footer-disc">Deze website is niet de officiële website van Quooker Nederland B.V. en presenteert de aanbieder niet als officiële dealer of officieel servicepunt. Quooker en productnamen zijn merken van hun rechthebbenden. Een selectie of aanvraag via deze website is geen bestelling, reservering of koopovereenkomst. Productbeelden in deze prototypeversie zijn samengesteld uit door de opdrachtgever aangeleverde screenshots en moeten vóór commerciële publicatie worden vervangen of juridisch worden vrijgegeven voor gebruik.</div>
+  </div>
+</footer>
+
+<script>
+const state={
+  model:"Flex Round",
+  finish:"Chroom",
+  reservoir:"PRO3",
+  cube:false,
+  issue:"",
+  part:""
+};
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+
+function update(){
+  $("#sumModel").textContent=state.model;
+  $("#sumFinish").textContent=state.finish;
+  $("#sumReservoir").textContent=state.reservoir;
+  $("#sumCube").textContent=state.cube?"Meenemen in beoordeling":"Niet geselecteerd";
+  $("#sumIssue").textContent=state.issue||"-";
+  $("#sumPart").textContent=state.part||"-";
+  $("#statusText").textContent=`${state.model} · ${state.finish} · ${state.reservoir}${state.cube?" · CUBE":""}`;
+  $("#hiddenSelection").value=`Model: ${state.model} | Finish: ${state.finish} | Reservoir: ${state.reservoir} | CUBE: ${state.cube?"ja":"nee"}`;
+  $("#hiddenIssue").value=state.issue;
+  $("#hiddenPart").value=state.part;
+}
+
+const routeContent={
+  systeem:{
+    tag:"Systeem",
+    title:"Geef uw voorkeur door.",
+    text:"Kies een model, finish en reservoir. De selectie is geen bestelling en wordt eerst beoordeeld.",
+    img:"assets/fusion-square.jpg"
+  },
+  service:{
+    tag:"Service",
+    title:"Onderhoud met context.",
+    text:"Geef door welk systeem u heeft en wat u wilt laten controleren. Foto's kunnen later worden toegevoegd.",
+    img:"assets/reservoir.jpg"
+  },
+  storing:{
+    tag:"Storing",
+    title:"Eerst het foutbeeld.",
+    text:"Knipperen, lekkage, temperatuur of bediening: beschrijf wat u ziet. Daarna kan gericht worden beoordeeld.",
+    img:"assets/flex-round.jpg"
+  },
+  onderdeel:{
+    tag:"Onderdeel",
+    title:"Niet op goed geluk.",
+    text:"Selecteer de categorie en stuur een foto of typeplaatje mee om het juiste onderdeel te laten bepalen.",
+    img:"assets/reservoir.jpg"
+  },
+  advies:{
+    tag:"Advies",
+    title:"Technische vraag?",
+    text:"Leg de situatie voor zonder zelf al een oplossing te hoeven kiezen.",
+    img:"assets/fusion-round.jpg"
+  }
+};
+
+$$(".route-row").forEach(b=>b.onclick=()=>{
+  $$(".route-row").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  const c=routeContent[b.dataset.route];
+  $("#routeTag").textContent=c.tag;
+  $("#routeTitle").textContent=c.title;
+  $("#routeText").textContent=c.text;
+  $("#routeImage").src=c.img;
+});
+
+$$(".model-btn").forEach(b=>b.onclick=()=>{
+  $$(".model-btn").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  state.model=b.dataset.model;
+  $("#modelName").textContent=state.model;
+  $("#modelDesc").textContent=b.dataset.desc;
+  $("#productImage").style.opacity="0";
+  setTimeout(()=>{
+    $("#productImage").src=b.dataset.img;
+    $("#productImage").style.transform="translateX(8px)";
+    $("#productImage").style.opacity="1";
+    setTimeout(()=>$("#productImage").style.transform="",180);
+  },120);
+  update();
+});
+
+$$(".swatch").forEach(b=>b.onclick=()=>{
+  $$(".swatch").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  state.finish=b.dataset.finish;
+  $("#finishName").textContent=state.finish;
+  update();
+});
+
+$$(".res-option").forEach(b=>b.onclick=()=>{
+  $$(".res-option").forEach(x=>{
+    x.classList.remove("active");
+    x.querySelector(".pick").textContent="○";
+  });
+  b.classList.add("active");
+  b.querySelector(".pick").textContent="●";
+  state.reservoir=b.dataset.res;
+  update();
+});
+
+$("#adviceReservoir").onclick=()=>{
+  $("#requestType").value="Technisch advies";
+  $("#message").value="Ik wil laten beoordelen welk reservoir (PRO3, COMBI of COMBI+) het beste bij mijn situatie past.\n\nWarmwaterleiding aanwezig: \nLange wachttijd op warm water: \n";
+  $("#aanvraag").scrollIntoView({behavior:"smooth"});
+};
+
+$("#cubeToggle").onclick=()=>{
+  state.cube=!state.cube;
+  $("#cubeToggle").classList.toggle("active",state.cube);
+  update();
+};
+
+$$(".issue").forEach(b=>b.onclick=()=>{
+  state.issue=b.dataset.issue;
+  $("#requestType").value=state.issue.toLowerCase().includes("onderhoud")?"Service / onderhoud":"Storing / reparatie";
+  $("#message").value=`Geselecteerde klacht / servicevraag: ${state.issue}\n\n`;
+  update();
+  $("#aanvraag").scrollIntoView({behavior:"smooth"});
+});
+
+$$(".part-link").forEach(b=>b.onclick=()=>{
+  state.part=b.dataset.part;
+  $("#requestType").value="Onderdeel identificeren";
+  $("#message").value=`Onderdeelcategorie: ${state.part}\n\n`;
+  update();
+  $("#aanvraag").scrollIntoView({behavior:"smooth"});
+});
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("on")});
+},{threshold:.08});
+$$(".reveal").forEach(el=>io.observe(el));
+
+update();
+</script>
+</body>
+</html>
